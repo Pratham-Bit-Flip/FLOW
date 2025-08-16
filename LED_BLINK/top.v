@@ -1,6 +1,3 @@
-// (c) 2025 IIT Dharwad
-// Top file for Lattice ICE40 UP5K MDP evaluation Board
-
 `include "led_blink.v"
 
 module top(
