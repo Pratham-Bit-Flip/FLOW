@@ -1,5 +1,5 @@
 module top(
-    input  wire osc_clk,   // 50 MHz clock input
+    input  wire osc_clk,   // clock input
     input  wire PB_2,      // Push button, active low reset
     output wire LED_2      // LED output
 );
