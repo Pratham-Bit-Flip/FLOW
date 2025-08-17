@@ -14,7 +14,7 @@ CHIPDB     = ~/nextpnr-xilinx/build/xilinx/chipdb-$(DEVICE).bin
 #files
 TOP        = top
 SRC        = led_blink/top.v led_blink/led_blink.v
-XDC        = boards/xillinx/numato_io.xdc   # converted from PCF
+XDC        = boards/xillinx/numato_io.xdc   
 BUILD_DIR  = build
 
 # Outputs
