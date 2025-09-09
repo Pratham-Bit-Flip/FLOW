@@ -1,4 +1,3 @@
-// Generation of 32-bit immediate
 module immgen(
 	input wire [31:0] instr,
 	output wire [31:0] imm_i,
