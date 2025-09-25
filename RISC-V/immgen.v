@@ -14,7 +14,7 @@ module immgen(
 	assign imm_s = {{20{instr[31]}},instr[31:25],instr[11:7]};
 	
 	//B-type:imm[12,10:5,4:1,11]-(12 bits, offset->shift left by 1)
-	assign imm_b = {{19{instr[31]}},instr[31],instr[7],instr[31:25],instr[11:8],1'b0};
+	assign imm_b = {{19{instr[31]}},instr[31],instr[7],instr[30:25],instr[11:8],1'b0};
 	
 	//U-type:imm[31:12]-(20 bits, imm<<12)
 	assign imm_u = {instr[31:12],12'b0};
