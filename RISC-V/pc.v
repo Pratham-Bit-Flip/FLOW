@@ -1,7 +1,7 @@
-module pc (
+ module pc (
     input  wire       clk,
     input  wire       rst,
-	output wire [31:0] next_pc, // Next Cycle
+	input wire [31:0] next_pc, // Next Cycle
     output reg [31:0] pc_current
 );
 
@@ -13,3 +13,4 @@ module pc (
     end
 
 endmodule
+
