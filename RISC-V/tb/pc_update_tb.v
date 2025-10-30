@@ -35,23 +35,23 @@ module pc_update_tb;
         is_branch  = 0; take_branch = 0; is_jal = 0; is_jalr = 0;
         #10;
 
-        // Case 1: PC + 4
+        // Case 1: 
         pc_current = 32'h0000_0000; 
         #10;
 
-        // Case 2: Branch taken
+        // Case 2:
         is_branch = 1; take_branch = 1; imm_out = 32'h8;
         #10;
 
-        // Case 3: Branch not taken
+        // Case 3: 
         take_branch = 0;
         #10;
 
-        // Case 4: JAL
+        // Case 4:
         is_branch = 0; is_jal = 1; imm_out = 32'h12;
         #10;
 
-        // Case 5: JALR
+        // Case 5: 
         is_jal = 0; is_jalr = 1; rs1_data = 32'h0000_0010; imm_out = 32'h4;
         #10;
 
