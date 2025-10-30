@@ -27,34 +27,27 @@ module pc_update_tb;
         $dumpvars(0, pc_update_tb);
         $monitor("time=%0t | pc_current=%h | rs1_data=%h | imm_out=%h | branch=%b | take=%b | jal=%b | jalr=%b | pc_next=%h",
                  $time, pc_current, rs1_data, imm_out, is_branch, take_branch, is_jal, is_jalr, pc_next);
-
         // Initial values
         pc_current = 32'h0000_0000; 
         imm_out    = 32'h0000_0000; 
         rs1_data   = 32'h0000_0000;
         is_branch  = 0; take_branch = 0; is_jal = 0; is_jalr = 0;
         #10;
-
         // Case 1: 
         pc_current = 32'h0000_0000; 
         #10;
-
         // Case 2:
         is_branch = 1; take_branch = 1; imm_out = 32'h8;
         #10;
-
         // Case 3: 
         take_branch = 0;
         #10;
-
         // Case 4:
         is_branch = 0; is_jal = 1; imm_out = 32'h12;
         #10;
-
         // Case 5: 
         is_jal = 0; is_jalr = 1; rs1_data = 32'h0000_0010; imm_out = 32'h4;
         #10;
-
         $finish;
     end
 endmodule
