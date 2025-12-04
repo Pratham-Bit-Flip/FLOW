@@ -23,9 +23,8 @@ module immgen (
             // J-type 
             3'b100: imm_out = { {11{instr[31]}}, instr[31], instr[19:12],
                                 instr[20], instr[30:21], 1'b0 };
-
-            // Default
-            default: imm_out = 32'b0;
+            
+         default: imm_out = 32'b0;
 
         endcase
     end
