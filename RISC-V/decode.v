@@ -1,7 +1,6 @@
-// decode.v - instruction decode (RISC-V RV32I)
 module decode (
-    input  wire [31:0] instr,        // full 32-bit instruction
-    output reg  [4:0]  alu_op,         // ALU operation selector
+    input  wire [31:0] instr,        
+    output reg  [4:0]  alu_op,         // ALU operation 
     output reg         alu_src_imm,    // 1: ALU uses immediate as operand B
     output reg         use_pc_as_rs1,  // 1: use PC instead of rs1
     output reg         mem_read,       // data memory read enable
@@ -10,19 +9,19 @@ module decode (
     output reg         is_branch,      // branch instruction
     output reg         is_jal,         // JAL instruction
     output reg         is_jalr,        // JALR instruction
-    output reg         illegal,        // illegal/unsupported opcode
-    output wire [2:0]  funct3_out,     // pass funct3 to later stages
-    output reg  [2:0]  imm_sel         // immediate type select for immgen
+    output reg         illegal,        // unsupported opcode
+    output wire [2:0]  funct3_out,     // pass funct3
+    output reg  [2:0]  imm_sel         // immediate select for immgen
 );
 
-    // extract instruction fields
-    wire [6:0] opcode = instr[6:0];     // opcode field
-    wire [2:0] funct3 = instr[14:12];   // funct3 field
-    wire [6:0] funct7 = instr[31:25];   // funct7 field
+    
+    wire [6:0] opcode = instr[6:0];     
+    wire [2:0] funct3 = instr[14:12];  
+    wire [6:0] funct7 = instr[31:25];   
 
     assign funct3_out = funct3;
 
-    // RISC-V base opcodes
+    // RISC-V opcodes
     localparam OPC_R      = 7'b0110011;
     localparam OPC_I_ALU  = 7'b0010011;
     localparam OPC_LOAD   = 7'b0000011;
@@ -33,7 +32,7 @@ module decode (
     localparam OPC_LUI    = 7'b0110111;
     localparam OPC_AUIPC  = 7'b0010111;
 
-    // internal ALU operation encoding
+    // ALU operation 
     localparam ALU_ADD    = 5'd0;
     localparam ALU_SUB    = 5'd1;
     localparam ALU_AND    = 5'd2;
@@ -44,9 +43,9 @@ module decode (
     localparam ALU_SRA    = 5'd7;
     localparam ALU_SLT    = 5'd8;
     localparam ALU_SLTU   = 5'd9;
-    localparam ALU_COPY_B = 5'd10;       // pass immediate directly
+    localparam ALU_COPY_B = 5'd10;       
 
-    // immediate generator select codes
+    // immediate select codes
     localparam IMM_I = 3'b000;
     localparam IMM_S = 3'b001;
     localparam IMM_B = 3'b010;
@@ -55,7 +54,6 @@ module decode (
 
     // combinational decode logic
     always @(*) begin
-        // safe defaults (NOP-like)
         alu_op        = ALU_ADD;
         alu_src_imm   = 1'b0;
         use_pc_as_rs1 = 1'b0;
@@ -69,7 +67,7 @@ module decode (
         imm_sel       = IMM_I;
 
         case (opcode)
-            // R-type register-register ALU ops
+            // R-type
             OPC_R: begin
                 reg_write   = 1'b1;
                 alu_src_imm = 1'b0;
@@ -86,7 +84,7 @@ module decode (
                 endcase
             end
 
-            // I-type immediate ALU ops
+            // I-type 
             OPC_I_ALU: begin
                 reg_write   = 1'b1;
                 alu_src_imm = 1'b1;
@@ -103,18 +101,18 @@ module decode (
                 endcase
             end
 
-            // load instructions
+            // load 
             OPC_LOAD: begin
                 reg_write   = 1'b1;
-                alu_src_imm = 1'b1;   // base + offset
+                alu_src_imm = 1'b1;  
                 mem_read    = 1'b1;
                 alu_op      = ALU_ADD;
                 imm_sel     = IMM_I;
             end
 
-            // store instructions
+            // store 
             OPC_STORE: begin
-                alu_src_imm = 1'b1;   // base + offset
+                alu_src_imm = 1'b1;  
                 mem_write   = 1'b1;
                 alu_op      = ALU_ADD;
                 imm_sel     = IMM_S;
@@ -124,7 +122,7 @@ module decode (
             OPC_BRANCH: begin
                 is_branch   = 1'b1;
                 alu_src_imm = 1'b0;
-                alu_op      = ALU_SUB; // comparison done via subtraction
+                alu_op      = ALU_SUB; // comparison using subtraction
                 imm_sel     = IMM_B;
             end
 
@@ -164,7 +162,6 @@ module decode (
                 imm_sel       = IMM_U;
             end
 
-            // unsupported opcode
             default: begin
                 illegal = 1'b1;
             end
