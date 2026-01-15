@@ -46,3 +46,17 @@ This project bridges that gap by explicitly tracking the full development path:
 All stages use open-source tooling, allowing inspection and modification at every level.
 
 ---
+
+### Implemented ISA
+Base ISA — RV32I (Complete)
+
+R-Type
+```ADD, SUB, AND, OR, XOR, SLL, SRL, SRA```
+I-Type
+```ADDI, ANDI, ORI, XORI, LW```
+S-Type
+```SW```
+B-Type
+```BEQ, BNE, BLT, BGE, BLTU, BGEU```
+
+RV32I functionality is fully implemented and verified up to synthesis netlist level.
