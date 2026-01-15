@@ -1,27 +1,28 @@
-module decode (
-    input  wire [31:0] instr,        
-    output reg  [4:0]  alu_op,         // ALU operation 
-    output reg         alu_src_imm,    // 1: ALU uses immediate as operand B
-    output reg         use_pc_as_rs1,  // 1: use PC instead of rs1
-    output reg         mem_read,       // data memory read enable
-    output reg         mem_write,      // data memory write enable
-    output reg         reg_write,      // register file write enable
-    output reg         is_branch,      // branch instruction
-    output reg         is_jal,         // JAL instruction
-    output reg         is_jalr,        // JALR instruction
-    output reg         illegal,        // unsupported opcode
-    output wire [2:0]  funct3_out,     // pass funct3
-    output reg  [2:0]  imm_sel         // immediate select for immgen
+// decode.v - instruction decode
+module decoder (
+    input  wire [31:0] instr,
+    output reg  [4:0]  alu_op,
+    output reg         alu_src_imm,
+    output reg         use_pc_as_rs1,
+    output reg         mem_read,
+    output reg         mem_write,
+    output reg         reg_write,
+    output reg         is_branch,
+    output reg         is_jal,
+    output reg         is_jalr,
+    output reg         illegal,
+    output wire [2:0]  funct3_out,
+    output reg  [2:0]  imm_sel     // NEW: drives immgen
 );
 
-    
-    wire [6:0] opcode = instr[6:0];     
-    wire [2:0] funct3 = instr[14:12];  
-    wire [6:0] funct7 = instr[31:25];   
+    // extract fields
+    wire [6:0] opcode = instr[6:0];
+    wire [2:0] funct3 = instr[14:12];
+    wire [6:0] funct7 = instr[31:25];
 
     assign funct3_out = funct3;
 
-    // RISC-V opcodes
+    // opcodes
     localparam OPC_R      = 7'b0110011;
     localparam OPC_I_ALU  = 7'b0010011;
     localparam OPC_LOAD   = 7'b0000011;
@@ -32,7 +33,7 @@ module decode (
     localparam OPC_LUI    = 7'b0110111;
     localparam OPC_AUIPC  = 7'b0010111;
 
-    // ALU operation 
+    // ALU opcodes
     localparam ALU_ADD    = 5'd0;
     localparam ALU_SUB    = 5'd1;
     localparam ALU_AND    = 5'd2;
@@ -43,17 +44,17 @@ module decode (
     localparam ALU_SRA    = 5'd7;
     localparam ALU_SLT    = 5'd8;
     localparam ALU_SLTU   = 5'd9;
-    localparam ALU_COPY_B = 5'd10;       
+    localparam ALU_COPY_B = 5'd10;
 
-    // immediate select codes
+    // imm_sel codes
     localparam IMM_I = 3'b000;
     localparam IMM_S = 3'b001;
     localparam IMM_B = 3'b010;
     localparam IMM_U = 3'b011;
     localparam IMM_J = 3'b100;
 
-    // combinational decode logic
     always @(*) begin
+        // defaults
         alu_op        = ALU_ADD;
         alu_src_imm   = 1'b0;
         use_pc_as_rs1 = 1'b0;
@@ -67,11 +68,10 @@ module decode (
         imm_sel       = IMM_I;
 
         case (opcode)
-            // R-type
             OPC_R: begin
                 reg_write   = 1'b1;
                 alu_src_imm = 1'b0;
-                imm_sel     = IMM_I; // unused but kept consistent
+                imm_sel     = IMM_I;
                 case (funct3)
                     3'b000: alu_op = funct7[5] ? ALU_SUB : ALU_ADD;
                     3'b001: alu_op = ALU_SLL;
@@ -84,7 +84,6 @@ module decode (
                 endcase
             end
 
-            // I-type 
             OPC_I_ALU: begin
                 reg_write   = 1'b1;
                 alu_src_imm = 1'b1;
@@ -101,59 +100,52 @@ module decode (
                 endcase
             end
 
-            // load 
             OPC_LOAD: begin
                 reg_write   = 1'b1;
-                alu_src_imm = 1'b1;  
+                alu_src_imm = 1'b1;
                 mem_read    = 1'b1;
                 alu_op      = ALU_ADD;
                 imm_sel     = IMM_I;
             end
 
-            // store 
             OPC_STORE: begin
-                alu_src_imm = 1'b1;  
+                alu_src_imm = 1'b1;
                 mem_write   = 1'b1;
                 alu_op      = ALU_ADD;
                 imm_sel     = IMM_S;
             end
 
-            // conditional branches
             OPC_BRANCH: begin
                 is_branch   = 1'b1;
                 alu_src_imm = 1'b0;
-                alu_op      = ALU_SUB; // comparison using subtraction
+                alu_op      = ALU_SUB;
                 imm_sel     = IMM_B;
             end
 
-            // jump and link
             OPC_JAL: begin
                 is_jal        = 1'b1;
-                reg_write     = 1'b1; // write link register
+                reg_write     = 1'b1;
                 alu_src_imm   = 1'b1;
                 use_pc_as_rs1 = 1'b1;
-                alu_op        = ALU_ADD; // PC + offset
+                alu_op        = ALU_ADD;
                 imm_sel       = IMM_J;
             end
 
-            // jump and link register
             OPC_JALR: begin
                 is_jalr     = 1'b1;
                 reg_write   = 1'b1;
                 alu_src_imm = 1'b1;
-                alu_op      = ALU_ADD; // rs1 + offset
+                alu_op      = ALU_ADD;
                 imm_sel     = IMM_I;
             end
 
-            // load upper immediate
             OPC_LUI: begin
                 reg_write   = 1'b1;
                 alu_src_imm = 1'b1;
-                alu_op      = ALU_COPY_B; // immediate << 12 handled in immgen
+                alu_op      = ALU_COPY_B;
                 imm_sel     = IMM_U;
             end
 
-            // add upper immediate to PC
             OPC_AUIPC: begin
                 reg_write     = 1'b1;
                 alu_src_imm   = 1'b1;
