@@ -37,8 +37,8 @@ module datapath (
     wire [2:0]  imm_sel;
     wire [2:0]  funct3;
     wire        illegal;
-
-    decode u_decode (
+    wire        use_pc_as_rs1;
+    decoder u_decode (
         .instr(imem_rdata),
         .alu_op(alu_op),
         .alu_src_imm(alu_src_imm),
@@ -50,6 +50,7 @@ module datapath (
         .is_jalr(is_jalr),
         .imm_sel(imm_sel),
         .illegal(illegal),
+        .use_pc_as_rs1(use_pc_as_rs1),
         .funct3_out(funct3)
     );
 
@@ -82,9 +83,9 @@ module datapath (
     wire [31:0] alu_in_b = alu_src_imm ? imm : rs2_data;
     wire [31:0] alu_result;
     wire        alu_zero;
-
-    ALU u_alu (
-        .a(rs1_data),
+    wire [31:0] alu_in_a = use_pc_as_rs1 ? pc_current : rs1_data;
+    alu u_alu (
+        .a(alu_in_a),
         .b(alu_in_b),
         .alu_op(alu_op),
         .y(alu_result),
@@ -121,7 +122,7 @@ module datapath (
     // ---------------- Next PC logic ----------------
     assign pc_next = (is_branch && take_branch) ? (pc_current + imm) :
                      (is_jal)                   ? (pc_current + imm) :
-                     (is_jalr)                  ? (rs1_data + imm) :
+                     (is_jalr)                  ? (alu_result & ~32'd1) :
                                                    pc_plus4;
 
 endmodule
