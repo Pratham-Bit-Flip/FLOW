@@ -1,5 +1,9 @@
 ## FLOW FPGA LOGIC OPEN WORKFLOW
 
+> ⚠️ This repository is under active development.  
+> Features, structure, and documentation may change as FPGA implementation and ISA extensions progress.
+
+---
 A fully open-source FPGA and processor development project demonstrating an end-to-end hardware design workflow — from basic FPGA bring-up (LED blink) to a verified RISC-V RV32I processor core, using only open-source EDA tools.
 FPGA implementation and ISA extensions are actively in progress.
 
