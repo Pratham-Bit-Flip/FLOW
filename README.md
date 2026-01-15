@@ -25,7 +25,7 @@ FLOW FPGA LOGIC OPEN WORKFLOW focuses on showing a realistic, reproducible hardw
 Every stage is version-controlled and backed by verification.
 
 ---
-Repository Structure
+### Repository Structure
 ```
 FLOW/
 ├── LED_BLINK
