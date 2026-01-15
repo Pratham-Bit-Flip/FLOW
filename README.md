@@ -22,7 +22,8 @@ Every stage is version-controlled and backed by verification.
 
 ---
 Repository Structure
-```FLOW-FPGA-LOGIC-OPEN-2WORKFLOW/
+```
+FLOW-FPGA-LOGIC-OPEN-2WORKFLOW/
 │
 ├── README.md
 ├── Makefile
