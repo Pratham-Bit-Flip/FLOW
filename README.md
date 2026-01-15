@@ -21,6 +21,19 @@ FLOW FPGA LOGIC OPEN WORKFLOW focuses on showing a realistic, reproducible hardw
 Every stage is version-controlled and backed by verification.
 
 ---
+Repository Structure
+```FLOW-FPGA-LOGIC-OPEN-2WORKFLOW/
+│
+├── README.md
+├── Makefile
+├── docs/
+├── src/
+├── tb/
+├── boards/
+└── tools/
+```
+
+---
 ### Key Facts:
 
 `Toolchain`: 100% open-source
@@ -66,3 +79,4 @@ B-Type
 ```BEQ, BNE, BLT, BGE, BLTU, BGEU```
 
 RV32I functionality is fully implemented and verified up to synthesis netlist level.
+
