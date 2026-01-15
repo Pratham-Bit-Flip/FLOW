@@ -27,15 +27,17 @@ Every stage is version-controlled and backed by verification.
 ---
 Repository Structure
 ```
-FLOW-FPGA-LOGIC-OPEN-2WORKFLOW/
-│
-├── README.md
+FLOW/
+├── LED_BLINK
+├── RISC-V
+│   ├── Hex Files
+│   ├── doc
+│   ├── src
+│   ├── tb
+│   └── boards
 ├── Makefile
-├── docs/
-├── src/
-├── tb/
-├── boards/
-└── tools/
+└── README.md
+
 ```
 
 ---
