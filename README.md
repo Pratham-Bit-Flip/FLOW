@@ -27,10 +27,22 @@ Every stage is version-controlled and backed by verification.
 
 `FPGA Bring-up`: LED blink — ✅ complete
 
-RISC-V RV32I: RTL + verification + netlist — ✅ complete
+`RISC-V RV32I`: RTL + verification + netlist — ✅ complete
 
-Netlist Visualization: SVG via netlistsvg — ✅ complete
+`Netlist Visualization`: SVG via netlistsvg — ✅ complete
 
-FPGA P&R (nextpnr): 🚧 in progress
+`FPGA P&R (nextpnr)`: 🚧 in progress
 
-ISA Extensions: 🚧 in progress
+`ISA Extensions`: 🚧 in progress
+
+---
+### Why This Project Exists
+
+Hardware designs are often shared either as isolated RTL or as FPGA binaries without visibility into intermediate steps.
+This project bridges that gap by explicitly tracking the full development path:
+
+`RTL → Synthesis → Netlist → FPGA P&R → Hardware`
+
+All stages use open-source tooling, allowing inspection and modification at every level.
+
+---
