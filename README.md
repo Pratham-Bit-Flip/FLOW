@@ -52,10 +52,16 @@ Base ISA — RV32I (Complete)
 
 R-Type
 ```ADD, SUB, AND, OR, XOR, SLL, SRL, SRA```
+
+
 I-Type
 ```ADDI, ANDI, ORI, XORI, LW```
+
+
 S-Type
 ```SW```
+
+
 B-Type
 ```BEQ, BNE, BLT, BGE, BLTU, BGEU```
 
