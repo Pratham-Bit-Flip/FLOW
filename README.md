@@ -1,4 +1,4 @@
-## FLOW FPGA LOGIC OPEN WORKFLOW
+## FLOW: FPGA LOGIC OPEN WORKFLOW
 
 > ⚠️ This repository is under active development.  
 > Features, structure, and documentation may change as FPGA implementation and ISA extensions progress.
