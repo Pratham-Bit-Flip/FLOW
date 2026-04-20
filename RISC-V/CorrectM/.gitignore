@@ -1,0 +1,20 @@
+# Local cloned repos/databases
+flows/02_prjxray_arty_a7_100t/local_prjxray_repo/
+flows/02_prjxray_arty_a7_100t/local_prjxray_db/
+
+# Build outputs
+flows/*/build/
+flows/*/reports/
+sim_build/
+
+# Icarus simulation generated outputs
+flows/00_functional_iverilog/bin/
+flows/00_functional_iverilog/logs/
+
+# Firmware binaries
+firmware/firmware.bin
+firmware/firmware.elf
+
+# Python cache
+__pycache__/
+*.pyc

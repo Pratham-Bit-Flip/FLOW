@@ -1,0 +1,17 @@
+// pc.v - program counter register
+module pc (
+    input clk,
+    input rst,
+	input [31:0] next_pc, // Next Cycle
+    output reg [31:0] pc_current
+);
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            pc_current <= 32'h0000_0000;   // reset to 0
+        else
+            pc_current <= next_pc;     // next cycle
+    end
+
+endmodule
+
