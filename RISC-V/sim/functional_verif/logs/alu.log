@@ -1,0 +1,64 @@
+=== Running alu ===
+VCD info: dumpfile alu_tb.vcd opened for output.
+
+=== ALU VERIFICATION TEST ===
+
+TEST 1: ADD (15 + 10 = 25)
+  Result:         25 (expected 25)
+  ✓ PASS
+
+TEST 2: SUB (100 - 30 = 70)
+  Result:         70 (expected 70)
+  ✓ PASS
+
+TEST 3: AND (0xFF00 & 0x0F0F = 0x0F00)
+  Result: 0x00000f00 (expected 0x00000F00)
+  ✓ PASS
+
+TEST 4: OR (0xF0F0 | 0x0F0F = 0xFFFF)
+  Result: 0x0000ffff (expected 0x0000FFFF)
+  ✓ PASS
+
+TEST 5: XOR (0xAAAA ^ 0x5555 = 0xFFFF)
+  Result: 0x0000ffff (expected 0x0000FFFF)
+  ✓ PASS
+
+TEST 6: SLL (1 << 4 = 16)
+  Result:         16 (expected 16)
+  ✓ PASS
+
+TEST 7: SRL (0x80000000 >> 1 = 0x40000000)
+  Result: 0x40000000 (expected 0x40000000)
+  ✓ PASS
+
+TEST 8: SRA (0x80000000 >>> 1 = 0xC0000000 - sign extended)
+  Result: 0xc0000000 (expected 0xC0000000)
+  ✓ PASS
+
+TEST 9: SLT (-5 < 10 = 1)
+  Result:          1 (expected 1)
+  ✓ PASS
+
+TEST 10: SLT (10 < 5 = 0)
+  Result:          0 (expected 0)
+  ✓ PASS
+
+TEST 11: SLTU (5 < 10 = 1)
+  Result:          1 (expected 1)
+  ✓ PASS
+
+TEST 12: SLTU (0xFFFFFFFF < 10 = 0 - unsigned)
+  Result:          0 (expected 0)
+  ✓ PASS
+
+TEST 13: COPY_B (copy b = 0xDEADBEEF)
+  Result: 0xdeadbeef (expected 0xDEADBEEF)
+  ✓ PASS
+
+TEST 14: Zero flag (15 - 15 = 0, zero=1)
+  Result:          0, zero=1 (expected 0, zero=1)
+  ✓ PASS
+
+=== Verification Complete ===
+
+alu_tb.v:122: $finish called at 140000 (1ps)

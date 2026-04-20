@@ -1,0 +1,36 @@
+=== Running pc ===
+VCD info: dumpfile pc_tb.vcd opened for output.
+
+=== PROGRAM COUNTER VERIFICATION TEST ===
+
+TEST 1: Reset to 0x00000000
+  PC after reset: 0x00000000 (expected 0x00000000)
+  ✓ PASS
+
+TEST 2: Sequential increment (PC = 0, 4, 8, 12)
+  PC: 0x00000004 (expected 0x00000004)
+  ✓ PASS
+  PC: 0x00000008 (expected 0x00000008)
+  ✓ PASS
+  PC: 0x0000000c (expected 0x0000000C)
+  ✓ PASS
+
+TEST 3: Jump to 0x00001000
+  PC: 0x00001000 (expected 0x00001000)
+  ✓ PASS
+
+TEST 4: Branch backward to 0x00000F00
+  PC: 0x00000f00 (expected 0x00000F00)
+  ✓ PASS
+
+TEST 5: Reset during operation
+  PC after reset: 0x00000000 (expected 0x00000000)
+  ✓ PASS
+
+TEST 6: Jump to large address 0x80000000
+  PC: 0x80000000 (expected 0x80000000)
+  ✓ PASS
+
+=== Verification Complete ===
+
+pc_tb.v:80: $finish called at 100000 (1ps)
