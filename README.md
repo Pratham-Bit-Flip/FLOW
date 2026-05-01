@@ -1,29 +1,21 @@
-## FLOW
+## Repository Layout
 
-This repository hosts a cleaned, open-source FPGA workflow centered on the RV32I SoC project in [FLOW/RISC-V/RV32I_SoC](FLOW/RISC-V/RV32I_SoC).
+This repository now uses a direct top-level layout.
 
-The current layout is:
+Top-level entries:
 
-- [FLOW](FLOW) for the FPGA workflow and build guides
-- [FLOW/RISC-V/RV32I_SoC](FLOW/RISC-V/RV32I_SoC) for the reorganized SoC RTL, firmware, testbenches, and flows
-- [tools](tools) for external dependencies such as `nextpnr-xilinx`, `prjxray`, and `prjxray-db`
-- [ARCHITECTURE_SPECIFICATION.md](ARCHITECTURE_SPECIFICATION.md), [BLOCK_DIAGRAM.md](BLOCK_DIAGRAM.md), and [UART_BOOTLOADER_GUIDE.md](UART_BOOTLOADER_GUIDE.md) for project documentation
+- [LED_BLINK](LED_BLINK)
+- [RISC-V](RISC-V)
+- [boards](boards)
+- [tools](tools)
 
-## What Works
+The main hardware project is [RISC-V/RV32I_SoC](RISC-V/RV32I_SoC).
 
-- RV32I hardcoded CPU path on board: working
-- Numato Mimas A7 bitstream generation: working
-- Unit and integration simulation: available under [FLOW/RISC-V/RV32I_SoC/tb](FLOW/RISC-V/RV32I_SoC/tb)
-- UART bootloader path: present and still under debug/tuning
+Start with these files:
 
-## Quick Start
+- [RISC-V/RV32I_SoC/README.md](RISC-V/RV32I_SoC/README.md)
+- [RISC-V/RV32I_SoC/flows/README.md](RISC-V/RV32I_SoC/flows/README.md)
+- [UART_BOOTLOADER_GUIDE.md](UART_BOOTLOADER_GUIDE.md)
 
-```bash
-cd FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/scripts
-FIRMWARE_APP=ping_pong ./run_prjxray_numato_ppa.sh
-```
-
-The generated bitstream is written to [FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.bit](FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.bit).
-
-For the full flow description, toolchain details, and build results, see [FLOW/README.md](FLOW/README.md).
+The working Numato Mimas A7 build flow is in [RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t](RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t).
 

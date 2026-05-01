@@ -11,10 +11,10 @@ OPENFPGALOADER = openFPGALoader
 DEVICE     = xc7a50t-1fgg484
 CHIPDB     = ~/nextpnr-xilinx/build/xilinx/chipdb-$(DEVICE).bin
 
-#files
+# files
 TOP        = top
-SRC        = led_blink/top.v led_blink/led_blink.v
-XDC        = boards/xillinx/numato_io.xdc   
+SRC        = LED_BLINK/top.v LED_BLINK/led_blink.v
+XDC        = boards/xillinx/numato_io.xdc
 BUILD_DIR  = build
 
 # Outputs

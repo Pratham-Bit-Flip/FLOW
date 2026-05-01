@@ -4,7 +4,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FLOW="$(cd "$SCRIPT_DIR/.." && pwd)"
 ROOT="$(cd "$FLOW/../.." && pwd)"
-PROJECT_ROOT="$(cd "$ROOT/../../.." && pwd)"
+SOC_ROOT="$(cd "$ROOT/.." && pwd)"
+PROJECT_ROOT="$(cd "$SOC_ROOT/.." && pwd)"
 BUILD="$FLOW/build"
 REPORTS="$FLOW/reports"
 CONSTRAINTS="$FLOW/constraints/numato_mimas_a7_50t.xdc"
@@ -90,10 +91,10 @@ SRC=(
 )
 
 echo "[numato] Building firmware (GCC -> bootrom.hex, APP=$FIRMWARE_APP)..."
-make -C "$ROOT/firmware" APP="$FIRMWARE_APP" clean all
+make -C "$SOC_ROOT/firmware" APP="$FIRMWARE_APP" clean all
 
 echo "[numato] Synthesizing..."
-cd "$ROOT"
+cd "$SOC_ROOT"
 yosys -l "$REPORTS/yosys_numato.log" -p "read_verilog ${SRC[*]}; synth_xilinx -abc9 -top $TOP; flatten; write_json flows/04_prjxray_numato_mimas_a7_50t/build/top.json; stat" >/dev/null
 
 echo "[numato] Running nextpnr-xilinx..."
@@ -178,7 +179,7 @@ else
 fi
 
 echo "[numato] Extracting PPA..."
-python3 "$ROOT/flows/common/scripts/extract_open_ppa.py" \
+python3 "$ROOT/common/scripts/extract_open_ppa.py" \
   --board "numato-mimas-a7-50t" \
   --toolchain "yosys+nextpnr-xilinx+prjxray" \
   --report-json "$REPORTS/nextpnr_numato_report.json" \
