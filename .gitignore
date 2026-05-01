@@ -1,6 +1,6 @@
 # Build artifacts
-flows/*/build/
-flows/*/reports/
+RISC-V/RV32I_SoC/flows/*/build/
+RISC-V/RV32I_SoC/flows/*/reports/
 
 # Simulation outputs
 *.vvp
@@ -25,9 +25,12 @@ env/
 *.swo
 
 # External tools (not source)
-nextpnr-xilinx/
-prjxray/
-prjxray-db/
+tools/nextpnr-xilinx/
+tools/prjxray/
+tools/prjxray-db/
+
+# Local wrapper leftovers
+FLOW/
 
 # Misc
 *.bit
