@@ -1,0 +1,20 @@
+# Build outputs
+build/
+reports/
+sim_build/
+
+# Generated verification outputs
+functional_verif/bin/
+functional_verif/logs/
+
+# Firmware binaries
+firmware/*.bin
+firmware/*.elf
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Waveforms
+*.vcd
+*.vvp

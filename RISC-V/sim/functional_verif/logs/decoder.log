@@ -1,0 +1,56 @@
+=== Running decoder ===
+VCD info: dumpfile decoder_tb.vcd opened for output.
+
+=== DECODER VERIFICATION TEST ===
+
+TEST 1: ADD x5, x10, x15 (R-type)
+  alu_op= 0 (0=ADD), reg_write=1, alu_src_imm=0
+  ✓ PASS
+
+TEST 2: ADDI x5, x10, 100 (I-type)
+  alu_op= 0 (0=ADD), reg_write=1, alu_src_imm=1, imm_sel=000
+  ✓ PASS
+
+TEST 3: LW x5, 8(x10) (Load)
+  mem_read=1, reg_write=1, alu_src_imm=1, imm_sel=000
+  ✓ PASS
+
+TEST 4: SW x15, 12(x10) (Store)
+  mem_write=1, reg_write=0, alu_src_imm=1, imm_sel=001
+  ✓ PASS
+
+TEST 5: BEQ x5, x10, 16 (Branch)
+  is_branch=1, reg_write=0, imm_sel=010
+  ✓ PASS
+
+TEST 6: JAL x1, 2048 (Jump)
+  is_jal=1, reg_write=1, use_pc_as_rs1=1, imm_sel=100
+  ✓ PASS
+
+TEST 7: JALR x1, 0(x10) (Jump Register)
+  is_jalr=1, reg_write=1, alu_src_imm=1, imm_sel=000
+  ✓ PASS
+
+TEST 8: LUI x10, 0x12345 (Load Upper Imm)
+  alu_op=10 (10=COPY_B), reg_write=1, alu_src_imm=1, imm_sel=011
+  ✓ PASS
+
+TEST 9: AUIPC x10, 0x12345 (Add Upper Imm to PC)
+  alu_op= 0 (0=ADD), reg_write=1, use_pc_as_rs1=1, imm_sel=011
+  ✓ PASS
+
+TEST 10: SUB x5, x10, x15 (R-type SUB)
+  alu_op= 1 (1=SUB), reg_write=1
+  ✓ PASS
+
+TEST 11: XOR x5, x10, x15 (R-type XOR)
+  alu_op= 4 (4=XOR), funct3=100
+  ✓ PASS
+
+TEST 12: Illegal instruction (invalid opcode)
+  illegal=1 (opcode=0x7f)
+  ✓ PASS
+
+=== Verification Complete ===
+
+decoder_tb.v:170: $finish called at 120000 (1ps)

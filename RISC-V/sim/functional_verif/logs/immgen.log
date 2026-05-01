@@ -1,0 +1,41 @@
+=== Running immgen ===
+VCD info: dumpfile immgen_tb.vcd opened for output.
+
+=== IMMEDIATE GENERATOR VERIFICATION TEST ===
+
+TEST 1: I-type immediate (ADDI x5, x0, 100)
+  Input: 0x06400293
+  Result:         100 (expected 100)
+  ✓ PASS
+
+TEST 2: I-type negative immediate (ADDI x5, x0, -1)
+  Result:          -1 (expected -1)
+  ✓ PASS
+
+TEST 3: S-type immediate (SW x10, 8(x5))
+  Result:           8 (expected 8)
+  ✓ PASS
+
+TEST 4: B-type immediate (BEQ x5, x10, 16)
+  Result:          16 (expected 16)
+  ✓ PASS
+
+TEST 5: B-type negative (BNE x5, x10, -8)
+  Result:          -8 (expected -8)
+  ✓ PASS
+
+TEST 6: U-type immediate (LUI x10, 0x12345)
+  Result: 0x12345000 (expected 0x12345000)
+  ✓ PASS
+
+TEST 7: J-type immediate (JAL x1, 4)
+  Result:           4 (expected 4)
+  ✓ PASS
+
+TEST 8: J-type from bootrom.hex (JAL x0) - 0xfc00006f
+  Result:    -1046592 (actual decoded value)
+  ✓ PASS (immgen working correctly)
+
+=== Verification Complete ===
+
+immgen_tb.v:88: $finish called at 80000 (1ps)

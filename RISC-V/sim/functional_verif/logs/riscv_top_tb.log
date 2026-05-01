@@ -1,0 +1,20 @@
+VCD info: dumpfile riscv_top_tb.vcd opened for output.
+=====================================
+RV32I CPU TESTBENCH
+=====================================
+Time	PC		Instr		ALU_Result	Reg_RS1		Reg_RS2		WB_Data		LED
+-------------------------------------
+30	Reset released
+410845000	fff00878	00000013	00000000	00000000	00000000	00000000	00
+410855000	fff0087c	00000013	00000000	00000000	00000000	00000000	00
+=====================================
+SIMULATION COMPLETE
+=====================================
+Final PC: fff00898
+Final Instruction: 00000013
+Final ALU Result: 00000000
+Final Write-Back Data: 00000000
+LED Output: 00
+Boot Done: 1
+=====================================
+riscv_top_tb.v:185: $finish called at 410925000 (1ps)
