@@ -1,0 +1,37 @@
+# Build artifacts
+flows/*/build/
+flows/*/reports/
+
+# Simulation outputs
+*.vvp
+*.vcd
+sim_build/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# External tools (not source)
+nextpnr-xilinx/
+prjxray/
+prjxray-db/
+
+# Misc
+*.bit
+*.fasm
+*.eblif
+*.json
+*.rr_graph.xml

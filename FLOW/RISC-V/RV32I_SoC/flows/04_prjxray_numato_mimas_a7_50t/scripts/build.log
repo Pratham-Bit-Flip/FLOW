@@ -1,0 +1,99 @@
++ set -euo pipefail
++++ dirname run_prjxray_numato_ppa.sh
+++ cd .
+++ pwd
++ SCRIPT_DIR=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/scripts
+++ cd /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/scripts/..
+++ pwd
++ FLOW=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t
+++ cd /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/../..
+++ pwd
++ ROOT=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC
+++ cd /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/../../..
+++ pwd
++ PROJECT_ROOT=/home/prathamesh-desai/Documents/Major-Project
++ BUILD=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build
++ REPORTS=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports
++ CONSTRAINTS=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/constraints/numato_mimas_a7_50t.xdc
++ TOP=rv32i_led_top
++ PART=xc7a50tfgg484-1
++ NEXTPNR_XILINX=/home/prathamesh-desai/Documents/Major-Project/tools/nextpnr-xilinx/nextpnr-xilinx
++ PRJXRAY_ROOT=/home/prathamesh-desai/Documents/Major-Project/tools/prjxray
++ PRJXRAY_DB=/home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7
++ NEXTPNR_SEED=13
++ NEXTPNR_PLACER_TIMEOUT=60
++ NEXTPNR_WALL_TIMEOUT=900
++ FIRMWARE_APP=ping_pong
++ command -v yosys
++ command -v python3
++ [[ ! -x /home/prathamesh-desai/Documents/Major-Project/tools/nextpnr-xilinx/nextpnr-xilinx ]]
++ mkdir -p /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports
++ TIMEOUT_BIN=
++ command -v timeout
+++ command -v timeout
++ TIMEOUT_BIN=/usr/bin/timeout
++ CHIPDB=
++ [[ -z '' ]]
++ for c in "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" "$FLOW/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin ]]
++ for c in "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" "$FLOW/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin ]]
++ for c in "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" "$FLOW/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin ]]
++ for c in "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" "$FLOW/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin ]]
++ for c in "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" "$FLOW/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin ]]
++ for c in "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" "$FLOW/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin ]]
++ CHIPDB=/home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin
++ break
++ [[ -z /home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin ]]
++ echo '[numato] Config: seed=13 placer_timeout=60 wall_timeout=900'
+[numato] Config: seed=13 placer_timeout=60 wall_timeout=900
++ SRC=("rtl/top/rv32i_led_top.v" "rtl/top/riscv_top.v" "rtl/core/datapath.v" "rtl/core/pc.v" "rtl/core/reg_file.v" "rtl/core/decoder.v" "rtl/core/immgen.v" "rtl/core/alu.v" "rtl/core/branch_comp.v" "rtl/core/wb_mux.v" "rtl/memory/data_mem.v" "rtl/memory/instr_mem.v" "rtl/memory/mem_map.v" "rtl/memory/flash_mem.v" "rtl/peripherals/uart_mmio.v" "rtl/peripherals/uart_tx.v" "rtl/peripherals/uart_rx.v" "rtl/peripherals/uart_bootloader.v")
++ echo '[numato] Building firmware (GCC -> bootrom.hex, APP=ping_pong)...'
+[numato] Building firmware (GCC -> bootrom.hex, APP=ping_pong)...
++ make -C /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/firmware APP=ping_pong clean all
+make: Entering directory '/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/firmware'
+rm -f firmware.elf firmware.bin firmware.dump bootrom.hex
+riscv64-unknown-elf-gcc -march=rv32i -mabi=ilp32 -Os -ffreestanding -nostdlib -nostartfiles -Wall -Wextra -T link.ld -nostdlib -Wl,--gc-sections -o firmware.elf crt0.S ping_pong.c
+riscv64-unknown-elf-objcopy -O binary firmware.elf firmware.bin
+cp -f bootrom.hex ../bootrom.hex
+make: Leaving directory '/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/firmware'
++ echo '[numato] Synthesizing...'
+[numato] Synthesizing...
++ cd /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC
++ yosys -l /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/yosys_numato.log -p 'read_verilog rtl/top/rv32i_led_top.v rtl/top/riscv_top.v rtl/core/datapath.v rtl/core/pc.v rtl/core/reg_file.v rtl/core/decoder.v rtl/core/immgen.v rtl/core/alu.v rtl/core/branch_comp.v rtl/core/wb_mux.v rtl/memory/data_mem.v rtl/memory/instr_mem.v rtl/memory/mem_map.v rtl/memory/flash_mem.v rtl/peripherals/uart_mmio.v rtl/peripherals/uart_tx.v rtl/peripherals/uart_rx.v rtl/peripherals/uart_bootloader.v; synth_xilinx -abc9 -top rv32i_led_top; flatten; write_json flows/04_prjxray_numato_mimas_a7_50t/build/top.json; stat'
++ echo '[numato] Running nextpnr-xilinx...'
+[numato] Running nextpnr-xilinx...
++ NEXTPNR_LOG=/home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/nextpnr_numato.log
++ /home/prathamesh-desai/Documents/Major-Project/tools/nextpnr-xilinx/nextpnr-xilinx --help
++ grep -q -- --fasm
++ NEXTPNR_ARGS=("$NEXTPNR_XILINX" --chipdb "$CHIPDB" --json "$BUILD/top.json" --xdc "$CONSTRAINTS" --fasm "$BUILD/top.fasm" --seed "$NEXTPNR_SEED" --freq 15 --timing-allow-fail --placer-heap-cell-placement-timeout "$NEXTPNR_PLACER_TIMEOUT" --report "$REPORTS/nextpnr_numato_report.json")
++ [[ -n /usr/bin/timeout ]]
++ echo '[numato] nextpnr wall timeout: 900s'
+[numato] nextpnr wall timeout: 900s
++ /usr/bin/timeout --foreground --signal=INT --kill-after=30s 900 /home/prathamesh-desai/Documents/Major-Project/tools/nextpnr-xilinx/nextpnr-xilinx --chipdb /home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin --json /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.json --xdc /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/constraints/numato_mimas_a7_50t.xdc --fasm /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.fasm --seed 13 --freq 15 --timing-allow-fail --placer-heap-cell-placement-timeout 60 --report /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/nextpnr_numato_report.json
++ :
++ echo '[numato] Creating bitstream...'
+[numato] Creating bitstream...
++ XC7FRAMES2BIT_BIN=
++ [[ -z '' ]]
++ command -v xc7frames2bit
++ [[ -x /home/prathamesh-desai/Documents/Major-Project/tools/prjxray/build/tools/xc7frames2bit ]]
++ XC7FRAMES2BIT_BIN=/home/prathamesh-desai/Documents/Major-Project/tools/prjxray/build/tools/xc7frames2bit
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.fasm ]]
++ [[ -n /home/prathamesh-desai/Documents/Major-Project/tools/prjxray/build/tools/xc7frames2bit ]]
++ [[ -f /home/prathamesh-desai/Documents/Major-Project/tools/prjxray/utils/fasm2frames.py ]]
++ [[ -d /home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7 ]]
++ PYTHONPATH=/home/prathamesh-desai/Documents/Major-Project/tools/prjxray
++ python3 /home/prathamesh-desai/Documents/Major-Project/tools/prjxray/utils/fasm2frames.py --db-root /home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7 --part xc7a50tfgg484-1 /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.fasm /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.frm
++ /home/prathamesh-desai/Documents/Major-Project/tools/prjxray/build/tools/xc7frames2bit --part_file /home/prathamesh-desai/Documents/Major-Project/tools/prjxray-db/artix7/xc7a50tfgg484-1/part.yaml --part_name xc7a50tfgg484-1 --frm_file /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.frm --output_file /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/build/top.bit
++ echo '[numato] Extracting PPA...'
+[numato] Extracting PPA...
++ python3 /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/common/scripts/extract_open_ppa.py --board numato-mimas-a7-50t --toolchain yosys+nextpnr-xilinx+prjxray --report-json /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/nextpnr_numato_report.json --csv /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/ppa_numato.csv --md /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/ppa_numato.md
+Wrote: /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/ppa_numato.csv
+Wrote: /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t/reports/ppa_numato.md
++ echo '[numato] Done. Artifacts in /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t'
+[numato] Done. Artifacts in /home/prathamesh-desai/Documents/Major-Project/FLOW/RISC-V/RV32I_SoC/flows/04_prjxray_numato_mimas_a7_50t
