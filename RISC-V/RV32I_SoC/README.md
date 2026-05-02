@@ -1,11 +1,11 @@
-# RV32I RISC-V Processor with UART Bootloader
+# RV32I RISC-V Processor with UART Bootloader Debug Path
 
-A complete open-source **32-bit RISC-V (RV32I) soft processor** written in Verilog, targeting Xilinx Artix-7 FPGAs. Features a UART bootloader for firmware-only updates without FPGA rebuilds.
+A complete open-source **32-bit RISC-V (RV32I) soft processor** written in Verilog, targeting Xilinx Artix-7 FPGAs. The UART bootloader path is present, but firmware upload is still under debug and is not yet reliable enough to describe as fully working.
 
 ## Features
 
 - ✅ **RV32I ISA Compliance** - Subset of RISC-V base instruction set
-- ✅ **UART Bootloader** - Load C firmware over serial (115200 baud, 8N1)
+- 🚧 **UART Bootloader** - UART activity is detected, but firmware programming is still under debug
 - ✅ **MMIO LED Control** - Memory-mapped LED outputs
 - ✅ **Hardware Heartbeat** - Independent LED blink proves FPGA alive
 - ✅ **JTAG Programming** - Full bitstream via OpenFPGALoader
@@ -20,13 +20,13 @@ FIRMWARE_APP=ping_pong ./run_prjxray_numato_ppa.sh
 openFPGALoader -b mimas_a7 -f ../build/top.bit
 ```
 
-### 2. **Upload C Firmware via UART**
+### 2. **UART Firmware Upload Path (Under Debug)**
 ```bash
 cd firmware
 make APP=ping_pong uart-upload PORT=/dev/ttyUSB0 BAUD=115200
 ```
 
-Press **reset** on the board. LEDs start blinking!
+This command path is kept for reference, but UART programming is not yet reliable enough for a full claim of support.
 
 ### 3. **Modify & Repeat**
 Edit any `.c` app in `firmware/`, then:
@@ -34,7 +34,7 @@ Edit any `.c` app in `firmware/`, then:
 make APP=myapp uart-upload PORT=/dev/ttyUSB0
 ```
 
-No FPGA rebuild needed! 🚀
+This is the intended workflow once UART programming is stabilized.
 
 ---
 
@@ -121,7 +121,7 @@ Outputs: `../build/top.bit` (Artix-7 bitstream)
 
 ---
 
-## UART Bootloader Protocol
+## UART Bootloader Protocol (Under Validation)
 
 **Packet Format (little-endian):**
 ```c
@@ -144,8 +144,8 @@ python3 upload_uart_boot.py \
 **Bootloader Sequence:**
 1. FPGA powers on / board reset pressed
 2. Bootloader waits for UART packets (2-second window)
-3. If packet received → load firmware into RAM
-4. Jump to entry point → firmware runs
+3. If packet is received, the bootloader currently detects UART activity and begins staging data
+4. Firmware programming and reliable handoff to execution are still being debugged
 5. If no packet → run flash contents (if available)
 
 ---

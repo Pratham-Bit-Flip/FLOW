@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This document describes the complete architecture of a **32-bit RISC-V processor** (RV32I ISA) implemented on Xilinx Artix-7 FPGAs. The core is a **single-cycle, non-pipelined** design optimized for embedded applications with dynamic firmware loading via UART bootloader.
+This document describes the complete architecture of a **32-bit RISC-V processor** (RV32I ISA) implemented on Xilinx Artix-7 FPGAs. The core is a **single-cycle, non-pipelined** design optimized for embedded applications. The UART bootloader path is present, but firmware programming via UART is still under debug.
 
 ---
 
@@ -104,7 +104,7 @@ Cycle N+1:  Fetch instruction @ PC+4 (or branch target)
 - **Capacity**: 1024 words (4 KB)
 - **Address Width**: 10 bits (word-addressed)
 - **Data Width**: 32 bits
-- **Initialization**: Pre-loaded with firmware via bootrom.hex or UART bootloader
+- **Initialization**: Pre-loaded with firmware via bootrom.hex; UART bootloader path is still being validated
 - **Access**: Combinational read (address input = instruction output same cycle)
 
 **Memory Map**:
@@ -248,7 +248,7 @@ J-type:  sign_extend({instr[31], instr[19:12], instr[20], instr[30:21]}, 1) [20:
 - **Data Format**: 8 bits per character
 
 **Note**: The FT2232HL is integrated on the Mimas A7 board. No external UART adapter needed.
-Simply connect USB cable from PC to board for serial communication and UART bootloader operation.
+Simply connect USB cable from PC to board for serial activity and bootloader testing; reliable firmware upload is still under debug.
 
 **UART RX (Receive)**:
 - Input: uart_rx (GPIO pin)
@@ -273,10 +273,10 @@ Simply connect USB cable from PC to board for serial communication and UART boot
   sw x14, 0(x15)          # Write 0xFF to 0x80001000 → LEDs all ON
   ```
 
-### 6.3 UART Bootloader (Enabled by Default)
-- **Status**: ✅ **ENABLED** - Always active on power-on
+### 6.3 UART Bootloader (Under Validation)
+- **Status**: 🚧 **UNDER DEBUG** - UART activity is detected, but the upload flow is not yet reliable enough to call complete
 - **Enable**: `WITH_UART_BOOT = 1'b1` in `rv32i_led_top.v`
-- **Function**: Dynamic firmware upload via USB UART (FT2232HL)
+- **Function**: UART-based firmware upload path under validation
 - **Protocol**: Raw 32-bit streaming (LSB first, 115200 baud)
 - **Timeout**: 
   - Per-word: 50 ms idle (no UART bytes)
@@ -286,8 +286,8 @@ Simply connect USB cable from PC to board for serial communication and UART boot
   1. FPGA powers on → system reset asserts
   2. Boot controller waits for UART data (1 second timeout)
   3. If data received → store in IMEM, extend timeout, LED5 lights
-  4. If idle timeout → release CPU from reset (boot_done = 1), LED4 lights
-  5. CPU executes firmware from IMEM
+  4. Current behavior indicates UART activity, but the programming handoff is still under debug
+  5. Once stabilized, CPU will execute firmware from IMEM
 
 **Bootloader Protocol**:
 ```
@@ -459,6 +459,57 @@ output wire boot_rx_seen_out;       // UART Data Detected
 - CV32E40P Core Documentation (https://github.com/openhwgroup/cv32e40p)
 - PiRV32 Documentation (https://github.com/iiitm-systems/pirv32)
 - Artix-7 FPGA Resources (Xilinx)
+
+---
+
+## Appendix B: UART Bootloader Notes
+
+The UART bootloader path is present, but firmware programming is still under debug and should not be described as fully complete yet.
+
+### B.1 Hardware Notes
+- The FT2232HL USB-to-UART bridge is integrated on the Mimas A7 board.
+- No external UART adapter is needed.
+- UART activity is detected on the board, but reliable firmware upload is still being validated.
+
+### B.2 Bootloader Status
+- UART detection works.
+- The programming handoff is not yet reliable enough to call complete.
+- Use the hardcoded CPU LED flow as the verified hardware demo.
+
+### B.3 Typical Intended Flow
+1. Power on or reset the board.
+2. UART activity is observed.
+3. Firmware data is staged into instruction memory once the upload path is stable.
+4. CPU executes firmware after boot handoff.
+
+---
+
+## Appendix C: Block Diagram Summary
+
+### C.1 High-Level Topology
+
+```mermaid
+graph TB
+  PC["Program Counter"] --> IMEM["Instruction Memory"]
+  IMEM --> DEC["Decoder"]
+  DEC --> REGF["Register File"]
+  REGF --> ALU["ALU"]
+  ALU --> DMEM["Data Memory / I-O"]
+  DMEM --> WBMUX["Write-Back Mux"]
+  WBMUX --> REGF
+  DEC --> BOOT["UART Bootloader"]
+  BOOT --> IMEM
+  DMEM --> UART["UART MMIO"]
+  DMEM --> LED["LED MMIO"]
+```
+
+### C.2 External Interfaces
+- UART RX/TX: board serial bridge activity, currently under validation for programming
+- LEDs: MMIO output for firmware-visible state
+- Clock and reset: 100 MHz system clock and board reset input
+
+### C.3 Documentation Source
+The detailed standalone UART and block-diagram notes were merged here to reduce the number of separate markdown files at the repository root.
 
 ---
 
