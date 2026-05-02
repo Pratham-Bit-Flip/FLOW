@@ -10,7 +10,7 @@ export FLOW_ROOT="$CORE_ROOT/flows"
 export FLOW_FUNC="$FLOW_ROOT/00_functional_iverilog"
 export FLOW_ICE40="$FLOW_ROOT/01_icestorm_up5k"
 export FLOW_A7="$FLOW_ROOT/02_prjxray_arty_a7_100t"
-export FLOW_NUMATO="$FLOW_ROOT/04_prjxray_numato_mimas_a7_50t"
+export FLOW_NUMATO="$FLOW_ROOT/04_numato_mimas_a7"
 
 # External tool databases
 # Set PRJXRAY_DB_ROOT environment variable before running build scripts

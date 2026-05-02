@@ -42,7 +42,7 @@ cd RV32I_SoC
 make all
 
 # Build FPGA bitstream
-cd flows/04_prjxray_numato_mimas_a7_50t/scripts
+cd flows/04_numato_mimas_a7/scripts
 ./run_prjxray_numato_ppa.sh
 
 # Upload firmware over UART

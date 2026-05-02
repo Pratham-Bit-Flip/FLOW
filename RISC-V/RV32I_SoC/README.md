@@ -15,7 +15,7 @@ A complete open-source **32-bit RISC-V (RV32I) soft processor** written in Veril
 
 ### 1. **One-Time FPGA Bitstream Flash**
 ```bash
-cd flows/04_prjxray_numato_mimas_a7_50t/scripts
+cd flows/04_numato_mimas_a7/scripts
 FIRMWARE_APP=ping_pong ./run_prjxray_numato_ppa.sh
 openFPGALoader -b mimas_a7 -f ../build/top.bit
 ```
@@ -113,7 +113,7 @@ make APP=ping_pong uart-upload-reset  # 40 attempts (more reliable)
 
 ### FPGA Bitstream Build
 ```bash
-cd flows/04_prjxray_numato_mimas_a7_50t/scripts
+cd flows/04_numato_mimas_a7/scripts
 FIRMWARE_APP=ping_pong ./run_prjxray_numato_ppa.sh
 ```
 

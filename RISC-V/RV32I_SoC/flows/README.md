@@ -25,7 +25,7 @@ This directory separates verification and implementation flows by toolchain/boar
   - `build/` -> intermediate artifacts (`.json`, `.config`, `.bit`)
   - `reports/` -> utilization/timing/power reports
   - Current default target is the ECP5 Versa-5G kit (`LFE5UM5G-45F-8BG381C`) using `rv32i_versa5g_top.v` and `constraints/versa5g.lpf`.
-- `04_prjxray_numato_mimas_a7_50t/`
+- `04_numato_mimas_a7/`
   - Open-source Artix-7 flow for Numato Mimas A7 (Yosys + nextpnr-xilinx + prjxray tools).
   - `constraints/` -> `.xdc`
   - `scripts/` -> build and report scripts

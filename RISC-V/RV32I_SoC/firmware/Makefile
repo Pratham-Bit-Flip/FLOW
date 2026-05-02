@@ -78,12 +78,12 @@ gcc-build:
 	$(MAKE) APP=$(APP) clean all
 
 fpga-program:
-	cd .. && FIRMWARE_APP=$(APP) ./flows/04_prjxray_numato_mimas_a7_50t/scripts/run_prjxray_numato_ppa.sh
-	cd .. && openFPGALoader -b mimas_a7 flows/04_prjxray_numato_mimas_a7_50t/build/top.bit
+	cd .. && FIRMWARE_APP=$(APP) ./flows/04_numato_mimas_a7/scripts/run_prjxray_numato_ppa.sh
+	cd .. && openFPGALoader -b mimas_a7 flows/04_numato_mimas_a7/build/top.bit
 
 fpga-program-flash:
-	cd .. && FIRMWARE_APP=$(APP) ./flows/04_prjxray_numato_mimas_a7_50t/scripts/run_prjxray_numato_ppa.sh
-	cd .. && openFPGALoader -b mimas_a7 -f flows/04_prjxray_numato_mimas_a7_50t/build/top.bit
+	cd .. && FIRMWARE_APP=$(APP) ./flows/04_numato_mimas_a7/scripts/run_prjxray_numato_ppa.sh
+	cd .. && openFPGALoader -b mimas_a7 -f flows/04_numato_mimas_a7/build/top.bit
 
 run-gcc-only: fpga-program-flash
 
@@ -93,8 +93,8 @@ run-gcc-only: fpga-program-flash
 # 1) Program core once (bitstream with UART boot + heartbeat on LED7)
 # 2) Upload only firmware over UART for each C code change
 program-core-once:
-	cd .. && FIRMWARE_APP=$(APP) ./flows/04_prjxray_numato_mimas_a7_50t/scripts/run_prjxray_numato_ppa.sh
-	cd .. && openFPGALoader -b mimas_a7 -f flows/04_prjxray_numato_mimas_a7_50t/build/top.bit
+	cd .. && FIRMWARE_APP=$(APP) ./flows/04_numato_mimas_a7/scripts/run_prjxray_numato_ppa.sh
+	cd .. && openFPGALoader -b mimas_a7 -f flows/04_numato_mimas_a7/build/top.bit
 
 firmware-only-upload: uart-upload-raw
 

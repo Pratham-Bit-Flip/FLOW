@@ -50,9 +50,9 @@ if [[ -z "$CHIPDB" ]]; then
 for c in \
   "$FLOW/local_prjxray_db/chipdb_rebuilt.bin" \
   "$FLOW/local_prjxray_db/chipdb.bin" \
-  "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb_rebuilt.bin" \
-  "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_db/chipdb.bin" \
-  "$ROOT/flows/04_prjxray_numato_mimas_a7_50t/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" \
+  "$ROOT/flows/04_numato_mimas_a7/local_prjxray_db/chipdb_rebuilt.bin" \
+  "$ROOT/flows/04_numato_mimas_a7/local_prjxray_db/chipdb.bin" \
+  "$ROOT/flows/04_numato_mimas_a7/local_prjxray_repo/chipdb/chipdb-xc7a50t.bin" \
   "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb_rebuilt.bin" \
   "$PROJECT_ROOT/tools/prjxray-db/artix7/xc7a50tfgg484-1/chipdb.bin"; do
   if [[ -f "$c" ]]; then
@@ -95,7 +95,7 @@ make -C "$SOC_ROOT/firmware" APP="$FIRMWARE_APP" clean all
 
 echo "[numato] Synthesizing..."
 cd "$SOC_ROOT"
-yosys -l "$REPORTS/yosys_numato.log" -p "read_verilog ${SRC[*]}; synth_xilinx -abc9 -top $TOP; flatten; write_json flows/04_prjxray_numato_mimas_a7_50t/build/top.json; stat" >/dev/null
+yosys -l "$REPORTS/yosys_numato.log" -p "read_verilog ${SRC[*]}; synth_xilinx -abc9 -top $TOP; flatten; write_json flows/04_numato_mimas_a7/build/top.json; stat" >/dev/null
 
 echo "[numato] Running nextpnr-xilinx..."
 NEXTPNR_LOG="$REPORTS/nextpnr_numato.log"
