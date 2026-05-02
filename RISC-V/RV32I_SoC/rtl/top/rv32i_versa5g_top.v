@@ -1,6 +1,6 @@
 module rv32i_versa5g_top (
-    input  wire       clkin,
-    input  wire       uart_rx,
+    input         clkin,
+    input         uart_rx,
     output wire       uart_tx,
     output wire [7:0] led
 );

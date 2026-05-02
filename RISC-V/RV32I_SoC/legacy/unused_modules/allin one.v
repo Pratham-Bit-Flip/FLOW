@@ -2,9 +2,9 @@
 module alu
   #(parameter integer WIDTH = 32)
   (
-    input  wire [WIDTH-1:0] a,
-    input  wire [WIDTH-1:0] b,
-    input  wire [4:0]       alu_op,
+    input  [WIDTH-1:0] a,
+    input  [WIDTH-1:0] b,
+    input  [4:0]       alu_op,
     output reg  [WIDTH-1:0] y,
     output wire             zero
   );
@@ -49,9 +49,9 @@ endmodule
 
 // branch_comp.v -- decides whether branch is taken based on funct3
 module branch_comp (
-    input  wire [31:0] rs1_data,
-    input  wire [31:0] rs2_data,
-    input  wire [2:0]  funct3,
+    input  [31:0] rs1_data,
+    input  [31:0] rs2_data,
+    input  [2:0]  funct3,
     output reg         take_branch
 );
 
@@ -70,12 +70,12 @@ module branch_comp (
 endmodule
 
 module data_mem(
-    input  wire        clk,
-    input  wire        memwrite,      // write enable
-    input  wire        memread,       // read enable
-    input  wire [2:0]  funct3,        // operation type (NEW)
-    input  wire [31:0] addr,          // byte address
-    input  wire [31:0] writedata,     // data to write
+    input         clk,
+    input         memwrite,      // write enable
+    input         memread,       // read enable
+    input  [2:0]  funct3,        // operation type (NEW)
+    input  [31:0] addr,          // byte address
+    input  [31:0] writedata,     // data to write
     output reg  [31:0] readdata       // data to read
 );
     reg [31:0] memory [0:255];
@@ -160,17 +160,17 @@ endmodule
 // datapath.v -- Single-cycle RV32I datapath
 
 module datapath (
-    input  wire        clk,
-    input  wire        rst,
+    input         clk,
+    input         rst,
 
     // Instruction memory interface
     output wire [31:0] imem_addr,
-    input  wire [31:0] imem_rdata,
+    input  [31:0] imem_rdata,
 
     // Data memory interface
     output wire [31:0] dmem_addr,
     output wire [31:0] dmem_wdata,
-    input  wire [31:0] dmem_rdata,
+    input  [31:0] dmem_rdata,
     output wire        dmem_we,
     output wire        dmem_re
 );
@@ -288,7 +288,7 @@ endmodule
 
 // decode.v - instruction decode
 module decoder (
-    input  wire [31:0] instr,
+    input  [31:0] instr,
     output reg  [4:0]  alu_op,
     output reg         alu_src_imm,
     output reg         use_pc_as_rs1,
@@ -451,8 +451,8 @@ endmodule
 
 
 module immgen (
-    input  wire [31:0] instr,    
-    input  wire [2:0]  imm_sel,   
+    input  [31:0] instr,    
+    input  [2:0]  imm_sel,   
     output reg  [31:0] imm_out    // Sign-extended immediate
 );
 
@@ -486,7 +486,7 @@ endmodule
 
 
 module instr_mem(
-    input  wire [31:0] pc,
+    input  [31:0] pc,
     output reg  [31:0] instr
 );
     // Small instruction memory (32 words) with LED pattern program
@@ -540,13 +540,13 @@ endmodule
 
 // pc_update.v - next PC calculation
 module pc_update (
-    input  wire [31:0] pc_current,
-    input  wire [31:0] imm_out,
-    input  wire [31:0] rs1_data,
-    input  wire        is_branch,
-    input  wire        take_branch,
-    input  wire        is_jal,
-    input  wire        is_jalr,
+    input  [31:0] pc_current,
+    input  [31:0] imm_out,
+    input  [31:0] rs1_data,
+    input         is_branch,
+    input         take_branch,
+    input         is_jal,
+    input         is_jalr,
     output reg  [31:0] pc_next
 );
 
@@ -566,13 +566,13 @@ endmodule
 
 // pc_update.v - next PC calculation
 module pc_update (
-    input  wire [31:0] pc_current,
-    input  wire [31:0] imm_out,
-    input  wire [31:0] rs1_data,
-    input  wire        is_branch,
-    input  wire        take_branch,
-    input  wire        is_jal,
-    input  wire        is_jalr,
+    input  [31:0] pc_current,
+    input  [31:0] imm_out,
+    input  [31:0] rs1_data,
+    input         is_branch,
+    input         take_branch,
+    input         is_jal,
+    input         is_jalr,
     output reg  [31:0] pc_next
 );
 
@@ -591,9 +591,9 @@ endmodule
 
 
  module pc (
-    input  wire       clk,
-    input  wire       rst,
-	input wire [31:0] next_pc, // Next Cycle
+    input       clk,
+    input       rst,
+	input [31:0] next_pc, // Next Cycle
     output reg [31:0] pc_current
 );
 
@@ -610,10 +610,10 @@ endmodule
 
 
 module reg_file(
-    input  wire  clk,
-    input  wire  wr_en,           // write enable
-    input  wire [4:0]  rs1, rs2, rd,  //source regs and destination reg
-    input  wire [31:0] wr_data,           // write data
+    input   clk,
+    input   wr_en,           // write enable
+    input  [4:0]  rs1, rs2, rd,  //source regs and destination reg
+    input  [31:0] wr_data,           // write data
     output wire [31:0] rd_data1, rd_data2      // read data outputs
 );
     reg [31:0] regs[0:31];           // 32 registers
@@ -635,8 +635,8 @@ endmodule
 // RISC-V TOP MODULE
 //==========================
 module riscv_top (
-    input  wire         clk,
-    input  wire         reset,
+    input          clk,
+    input          reset,
     
     // Debug / Monitoring outputs
     output wire [31:0]  pc_out,         // current PC value
@@ -820,11 +820,11 @@ endmodule
 
 
 module wb_mux (
-    input  wire [31:0] alu_result,
-    input  wire [31:0] mem_data,
-    input  wire [31:0] pc_plus4,
-    input  wire [31:0] imm_u,
-    input  wire [1:0]  sel,       // 00=ALU, 01=Mem, 10=PC+4, 11=Imm_U
+    input  [31:0] alu_result,
+    input  [31:0] mem_data,
+    input  [31:0] pc_plus4,
+    input  [31:0] imm_u,
+    input  [1:0]  sel,       // 00=ALU, 01=Mem, 10=PC+4, 11=Imm_U
     output reg  [31:0] wb_data
 );
     always @(*) begin
@@ -844,8 +844,8 @@ endmodule
 // Instantiates full RV32I core with MMIO LED output
 
 module rv32i_led_top (
-    input  wire       sys_clk,
-    input  wire       sys_rst_n,
+    input        sys_clk,
+    input        sys_rst_n,
     output wire [7:0] led
 );
     // Active-high reset for riscv_top

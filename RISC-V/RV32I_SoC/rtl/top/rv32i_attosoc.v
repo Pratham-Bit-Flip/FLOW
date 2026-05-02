@@ -1,10 +1,10 @@
 // PicoRV-style SoC wrapper for the RV32I core.
 // Keeps base core RTL unchanged and exposes a simple board-facing interface.
 module rv32i_attosoc (
-    input  wire       clk,
+    input           clk,
     output wire [7:0] led,
     output wire       uart_tx,
-    input  wire       uart_rx
+    input           uart_rx
 );
     reg [15:0] reset_cnt = 16'd0;
     wire resetn = &reset_cnt;

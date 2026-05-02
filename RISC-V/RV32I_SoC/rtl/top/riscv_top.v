@@ -14,9 +14,9 @@ module riscv_top #(
     parameter         FLASH_INIT_FILE = "init/flash.hex",
     parameter integer FLASH_INIT_WORDS = 1
 ) (
-    input  wire         clk,
-    input  wire         reset,
-    input  wire         uart_rx,
+    input           clk,
+    input           reset,
+    input           uart_rx,
     output wire         uart_tx,
     
     // Debug / Monitoring outputs

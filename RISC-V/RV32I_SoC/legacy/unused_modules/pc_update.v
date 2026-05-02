@@ -1,12 +1,12 @@
 // pc_update.v - next PC calculation
 module pc_update (
-    input  wire [31:0] pc_current,
-    input  wire [31:0] imm_out,
-    input  wire [31:0] rs1_data,
-    input  wire        is_branch,
-    input  wire        take_branch,
-    input  wire        is_jal,
-    input  wire        is_jalr,
+    input  [31:0] pc_current,
+    input  [31:0] imm_out,
+    input  [31:0] rs1_data,
+    input          is_branch,
+    input          take_branch,
+    input          is_jal,
+    input          is_jalr,
     output reg  [31:0] pc_next
 );
 

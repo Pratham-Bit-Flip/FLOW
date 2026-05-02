@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
 module led_blink (
-    input wire clk,      // clock input
-    input wire rst_n,    // Active-low reset
-    output reg led       // LED output
+    input clk,      // clock input
+    input rst_n,    // Active-low reset
+    output reg led  // LED output
 );
 
     localparam [25:0] COUNT_MAX = 26'd25_000_000 - 1;

@@ -16,9 +16,9 @@
 // K22 = uart_tx (to FT2232HL)
 
 module rv32i_led_top (
-    input  wire       sys_clk,
-    input  wire       sys_rst_n,
-    input  wire       uart_rx,
+    input           sys_clk,
+    input           sys_rst_n,
+    input           uart_rx,
     output wire       uart_tx,
     output wire [7:0] led
 );

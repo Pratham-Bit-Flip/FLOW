@@ -1,9 +1,9 @@
 // reg_file.v - 32x32 register file with synchronous write
 module reg_file(
-    input  wire  clk,
-    input  wire  wr_en,           // write enable
-    input  wire [4:0]  rs1, rs2, rd,  //source regs and destination reg
-    input  wire [31:0] wr_data,           // write data
+    input   clk,
+    input   wr_en,           // write enable
+    input  [4:0]  rs1, rs2, rd,  //source regs and destination reg
+    input  [31:0] wr_data,           // write data
     output wire [31:0] rd_data1, rd_data2      // read data outputs
 );
     reg [31:0] regs[0:31];           // 32 registers

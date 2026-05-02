@@ -47,7 +47,7 @@ R-type:  opcode[6:0] | rd[11:7] | funct3[14:12] | rs1[19:15] | rs2[24:20] | func
 - **Pipeline Stages**: 1 (single-cycle, combinational execution)
 - **Latency**: 1-3 cycles (depends on instruction type)
 - **Throughput**: 1 instruction per cycle (best case)
-- **Branch Prediction**: None (hardwired pc+4, branch taken in next cycle)
+- **Branch Prediction**: None (default pc+4 fall-through, branch taken in next cycle)
 
 ### 2.2 Execution Timeline
 ```
@@ -69,7 +69,7 @@ Cycle N+1:  Fetch instruction @ PC+4 (or branch target)
 ### 3.1 General Purpose Registers (GPR)
 | Register | ABI Name | Purpose | Hardware Notes |
 |----------|----------|---------|-----------------|
-| x0 | zero | Hardwired to 0 | Read-only, cannot write |
+| x0 | zero | Always 0 | Read-only, cannot write |
 | x1 | ra | Return address | Software convention |
 | x2 | sp | Stack pointer | Software convention |
 | x3-x31 | (various) | General purpose | Read/write |
@@ -118,7 +118,7 @@ Cycle N+1:  Fetch instruction @ PC+4 (or branch target)
 - **Width**: 32 × 32 bits
 - **Read Latency**: 0 cycles (combinational)
 - **Write Latency**: 1 cycle (clocked)
-- **Special**: x0 hardwired to 0, writes to x0 are ignored
+- **Special**: x0 is always 0, and writes to x0 are ignored
 
 **Register Operations**:
 ```

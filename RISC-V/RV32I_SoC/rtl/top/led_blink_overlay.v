@@ -3,8 +3,8 @@
 module led_blink_overlay #(
     parameter integer DIV_BIT = 24
 ) (
-    input  wire       clk,
-    input  wire [7:0] led_in,
+    input         clk,
+    input  [7:0] led_in,
     output wire [7:0] led_out
 );
     reg [31:0] div_cnt = 32'd0;

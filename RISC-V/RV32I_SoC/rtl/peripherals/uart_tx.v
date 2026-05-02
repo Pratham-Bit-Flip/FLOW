@@ -3,10 +3,10 @@ module uart_tx #(
     parameter integer CLK_HZ = 100_000_000,
     parameter integer BAUD   = 115200
 ) (
-    input  wire       clk,
-    input  wire       reset,
-    input  wire       tx_start,
-    input  wire [7:0] tx_data,
+    input         clk,
+    input         reset,
+    input         tx_start,
+    input  [7:0] tx_data,
     output reg        tx,
     output wire       tx_busy
 );

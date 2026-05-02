@@ -1,7 +1,7 @@
 // immgen.v - immediate generator for RV32I formats
 module immgen (
-    input  wire [31:0] instr,    
-    input  wire [2:0]  imm_sel,   
+    input  [31:0] instr,    
+    input  [2:0]  imm_sel,   
     output reg  [31:0] imm_out    // Sign-extended immediate
 );
 

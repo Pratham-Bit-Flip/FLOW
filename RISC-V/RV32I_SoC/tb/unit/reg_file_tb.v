@@ -60,7 +60,7 @@ module reg_file_tb;
             $display("  ✗ FAIL");
         
         // TEST 3: x0 should always be zero
-        $display("\nTEST 3: x0 hardwired to zero (attempt write)");
+        $display("\nTEST 3: x0 always zero (attempt write)");
         rd = 5'd0;
         wr_data = 32'hFFFFFFFF;
         wr_en = 1;

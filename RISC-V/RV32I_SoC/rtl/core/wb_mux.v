@@ -1,10 +1,10 @@
 // wb_mux.v - write-back data selector
 module wb_mux (
-    input  wire [31:0] alu_result,
-    input  wire [31:0] mem_data,
-    input  wire [31:0] pc_plus4,
-    input  wire [31:0] imm_u,
-    input  wire [1:0]  sel,       // 00=ALU, 01=Mem, 10=PC+4, 11=Imm_U
+    input  [31:0] alu_result,
+    input  [31:0] mem_data,
+    input  [31:0] pc_plus4,
+    input  [31:0] imm_u,
+    input  [1:0]  sel,       // 00=ALU, 01=Mem, 10=PC+4, 11=Imm_U
     output reg  [31:0] wb_data
 );
     always @(*) begin

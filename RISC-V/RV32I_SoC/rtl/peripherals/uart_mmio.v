@@ -3,17 +3,17 @@ module uart_mmio #(
     parameter integer CLK_HZ = 100_000_000,
     parameter integer BAUD   = 115200
 ) (
-    input  wire       clk,
-    input  wire       reset,
+    input          clk,
+    input          reset,
 
-    input  wire        memwrite,
-    input  wire        memread,
-    input  wire [31:0] addr,
-    input  wire [31:0] writedata,
+    input           memwrite,
+    input           memread,
+    input  [31:0] addr,
+    input  [31:0] writedata,
     output reg  [31:0] readdata,
 
     output wire       uart_tx,
-    input  wire       uart_rx
+    input          uart_rx
 );
     // Register map (offsets)
     // 0x00 TXDATA (write)

@@ -2,9 +2,9 @@
 module alu
   #(parameter integer WIDTH  =32)
   (
-    input  wire [WIDTH-1:0] a,
-    input  wire [WIDTH-1:0] b,
-    input  wire [4:0]       alu_op,
+    input  [WIDTH-1:0] a,
+    input  [WIDTH-1:0] b,
+    input  [4:0]       alu_op,
     output reg  [WIDTH-1:0] y,
     output wire             zero
   );

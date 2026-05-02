@@ -272,7 +272,7 @@ All RV32I modules tested:
 - ✓ **Decoder** - All RV32I instruction formats (R, I, S, B, U, J)
 - ✓ **Immediate Generator** - 5 immediate format encoding (I, S, B, U, J)
 - ✓ **Program Counter** - Reset, increment, branch/jump targets
-- ✓ **Register File** - 32×32-bit read/write, x0 hardwired zero
+- ✓ **Register File** - 32×32-bit read/write, x0 always zero
 - ✓ **Data Memory** - Load/store operations, address decoding
 - ✓ **Branch Comparator** - All 6 branch types (BEQ, BNE, BLT, BGE, BLTU, BGEU)
 - ✓ **Write-back MUX** - Selects correct data source (ALU, memory, PC+4, upper immediate)

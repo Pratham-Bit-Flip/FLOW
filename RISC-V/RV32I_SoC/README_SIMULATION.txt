@@ -135,7 +135,7 @@ ALU OPERATIONS:
 REGISTER VALUES:
   • x1 (x[1]):   Incrementing counter (1, 2, 4, 8, 16, ...)
   • x11 (x[11]): UART base address (0x80000000)
-  • x0 (x[0]):   Always 0 (hardwired zero register)
+  • x0 (x[0]):   Always 0 (fixed zero register)
 
 MEMORY OPERATIONS:
   • Stores: 8 store operations to 0x80000000 observed

@@ -40,7 +40,7 @@
 5. **Register Activity**
    - RS1 Register: Contains UART base address 0x80000000
    - RS2 Register: Contains incrementing counter values (1, 2, 4, 8, ...)
-   - x0 (zero register): Always 0 (hardwired)
+   - x0 (zero register): Always 0
 
 6. **LED Output**
    - LED register remains 0x00 throughout

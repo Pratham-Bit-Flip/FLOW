@@ -1,8 +1,8 @@
 // control_unit.v - control signal generator for RV32I
 module control_unit (
-    input  wire [6:0] opcode,
-    input  wire [2:0] funct3,
-    input  wire [6:0] funct7,
+    input  [6:0] opcode,
+    input  [2:0] funct3,
+    input  [6:0] funct7,
     output reg  [4:0] alu_op,
     output reg        alu_src_imm,
     output reg        use_pc_as_rs1,

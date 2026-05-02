@@ -4,7 +4,7 @@
 
 module rv32i_numato_top (
     input  sys_clk,
-    input  wire       sys_rst_n,
+    input         sys_rst_n,
     output wire [7:0] led
 );
     reg [7:0] por_cnt = 8'd0;

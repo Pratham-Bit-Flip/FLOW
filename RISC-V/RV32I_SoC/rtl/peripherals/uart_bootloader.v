@@ -3,9 +3,9 @@ module uart_bootloader #(
     parameter integer CLK_HZ = 100_000_000,
     parameter integer BAUD   = 115200
 ) (
-    input  wire        clk,
-    input  wire        reset,
-    input  wire        uart_rx,
+    input          clk,
+    input          reset,
+    input          uart_rx,
 
     output reg         boot_we,
     output reg  [31:0] boot_addr,

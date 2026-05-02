@@ -1,9 +1,9 @@
 // Generic SoC wrapper around the RV32I RTL.
 // No board-specific wiring and no board-demo blink logic here.
 module rv32i_soc (
-    input  wire       clk,
-    input  wire       reset_n,
-    input  wire       uart_rx,
+    input           clk,
+    input           reset_n,
+    input           uart_rx,
     output wire       uart_tx,
     output wire [7:0] led_soc
 );

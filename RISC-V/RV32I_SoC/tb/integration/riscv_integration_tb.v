@@ -196,7 +196,7 @@ module riscv_core_integration_tb;
         
         // Verify x0 is always zero (check for X or non-zero)
         if (REGFILE.regs[0] === 32'h0) begin
-            $display("\n✅ PASS: x0 hardwired to zero");
+            $display("\n✅ PASS: x0 always zero");
         end else if (REGFILE.regs[0] === 32'hxxxxxxxx) begin
             $display("\n⚠️  WARNING: x0 uninitialized (simulation artifact)");
         end else begin

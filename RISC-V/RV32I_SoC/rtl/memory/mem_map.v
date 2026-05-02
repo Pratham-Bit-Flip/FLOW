@@ -8,17 +8,17 @@ module mem_map #(
     parameter         FLASH_INIT_FILE = "init/flash.hex",
     parameter integer FLASH_INIT_WORDS = 1
 ) (
-    input  wire        clk,
-    input  wire        reset,
-    input  wire        memwrite,
-    input  wire        memread,
-    input  wire [2:0]  funct3,
-    input  wire [31:0] addr,
-    input  wire [31:0] writedata,
+    input          clk,
+    input          reset,
+    input           memwrite,
+    input           memread,
+    input  [2:0]  funct3,
+    input  [31:0] addr,
+    input  [31:0] writedata,
     output reg  [31:0] readdata,
     output reg  [7:0]  led_out,
     output wire        uart_tx,
-    input  wire        uart_rx
+    input          uart_rx
 );
     // Address map
     localparam [31:0] RAM_BASE   = 32'h0000_0000; // 1KB RAM (0x0000_0000 - 0x0000_03FF)

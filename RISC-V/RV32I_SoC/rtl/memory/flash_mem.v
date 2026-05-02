@@ -4,12 +4,12 @@ module flash_mem #(
     parameter         INIT_FILE = "init/flash.hex",
     parameter integer INIT_WORDS = 1
 ) (
-    input  wire        clk,
-    input  wire        memwrite,
-    input  wire        memread,
-    input  wire [2:0]  funct3,
-    input  wire [31:0] addr,
-    input  wire [31:0] writedata,
+    input          clk,
+    input           memwrite,
+    input           memread,
+    input  [2:0]  funct3,
+    input  [31:0] addr,
+    input  [31:0] writedata,
     output reg  [31:0] readdata
 );
     localparam integer ADDR_W = (WORDS <= 2) ? 1 : $clog2(WORDS);
