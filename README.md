@@ -283,3 +283,5 @@ Currently, serial communication is under development. Use the LED toggle demonst
 - [ ] Document memory layout and peripheral access patterns
 - [ ] Add more sophisticated firmware examples (tasks, interrupts)
 
+### Note :
+“AI tools were used for minor code refactoring, formatting, and documentation improvements. All architecture, design decisions, and implementation logic were independently developed.”
