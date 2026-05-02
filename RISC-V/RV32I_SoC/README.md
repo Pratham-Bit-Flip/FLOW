@@ -341,7 +341,8 @@ This project is licensed under the **MIT License** - see LICENSE file for detail
 
 ## Author
 
-Prathamesh Desai
+- [Prathamesh Desai](https://github.com/Pratham-Bit-Flip)
+- [Girija Ambardekar](https://github.com/girija-8)
 
 ## Support
 
